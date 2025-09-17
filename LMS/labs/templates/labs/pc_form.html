@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PC Form</title>
+</head>
+<body>
+    <h1>{% if object %}Edit PC{% else %}Add PC{% endif %}</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save</button>
+    </form>
+    <a href="{% if object %}{% url 'lab-detail' object.lab.pk %}{% else %}{% url 'lab-list' %}{% endif %}">Cancel</a>
+</body>
+</html>

@@ -12,6 +12,7 @@
     <p><strong>Total PCs:</strong> {{ lab.pc_set.count }}</p>
 
     <h2>PCs in this Lab:</h2>
+    <a href="{% url 'pc-add' lab.id %}">➕ Add New PC</a>
     <table border="1">
         <thead>
             <tr>
@@ -25,6 +26,7 @@
                 <th>Storage (GB)</th>
                 <th>OS</th>
                 <th>Status</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -46,14 +48,19 @@
                         ✅ Working
                     {% endif %}
                 </td>
+                <td>
+                    <a href="{% url 'pc-edit' pc.id %}">✏️ Edit</a> |
+                    <a href="{% url 'pc-delete' pc.id %}">🗑️ Delete</a>
+                </td>
             </tr>
             {% empty %}
             <tr>
-                <td colspan="10">No PCs in this lab.</td>
+                <td colspan="11">No PCs in this lab.</td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
+
 
     <a href="{% url 'lab-list' %}">🔙 Back to Labs</a>
 </body>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete PC</title>
+</head>
+<body>
+    <h1>Delete PC</h1>
+    <p>Are you sure you want to delete PC <strong>{{ object.hostname }}</strong> (Asset: {{ object.asset_tag }})?</p>
+    
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Yes, Delete</button>
+        <a href="{% url 'lab-detail' object.lab.pk %}">Cancel</a>
+    </form>
+</body>
+</html>
