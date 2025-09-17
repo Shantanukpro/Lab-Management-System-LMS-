@@ -45,6 +45,9 @@ class Lab(models.Model):
 
     def __str__(self):
         return self.name
+    
+    def pc_count(self):
+        return self.pc_set.count()   
 
 
 # -----------------------------
@@ -75,7 +78,6 @@ class PC(models.Model):
 
     def __str__(self):
         return self.hostname or f"PC-{self.id}"
-
 
 # -----------------------------
 # 5) Maintenance Request

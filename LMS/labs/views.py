@@ -9,8 +9,8 @@ from django.urls import reverse_lazy
 # -------------------------
 class LabListView(ListView):
     model = Lab
-    template_name = 'labs/lab_list.html'
-    context_object_name = 'labs'
+    template_name = "labs/lab_list.html"
+    context_object_name = "labs"
 
 # -------------------------
 # Create Lab

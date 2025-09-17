@@ -1,37 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Lab List</title>
+    <title>Labs</title>
 </head>
 <body>
-<h1>All Labs</h1>
-<a href="{% url 'lab-add' %}">➕ Add New Lab</a>
-<table border="1" cellpadding="5">
-    <tr>
-        <th>ID</th>
-        <th>Lab Code</th>
-        <th>Name</th>
-        <th>Location</th>
-        <th>No. of PCs</th>
-        <th>Actions</th>
-    </tr>
-    {% for lab in labs %}
-    <tr>
-        <td>{{ lab.id }}</td>
-        <td>
-            <a href="{% url 'lab-detail' lab.id %}">{{ lab.lab_code }}</a>
-        </td>
-        <td>{{ lab.name }}</td>
-        <td>{{ lab.location }}</td>
-        <td>{{ lab.pc_set.count }}</td> <!-- count PCs in that lab -->
-        <td>
-            <a href="{% url 'lab-edit' lab.id %}">✏️ Edit</a> |
-            <a href="{% url 'lab-delete' lab.id %}">🗑 Delete</a>
-        </td>
-    </tr>
-    {% empty %}
-    <tr><td colspan="6">No labs found.</td></tr>
-    {% endfor %}
-</table>
+    <h1>All Labs</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Lab Code</th>
+                <th>Name</th>
+                <th>Location</th>
+                <th>No. of PCs</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for lab in labs %}
+            <tr>
+                <td>
+                    <a href="{% url 'lab-detail' lab.pk %}">
+                        {{ lab.lab_code }}
+                    </a>
+                </td>
+                <td>{{ lab.name }}</td>
+                <td>{{ lab.location }}</td>
+                <td>{{ lab.pc_count }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 </body>
 </html>

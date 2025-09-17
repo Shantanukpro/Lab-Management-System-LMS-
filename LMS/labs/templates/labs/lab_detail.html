@@ -1,40 +1,60 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>{{ lab.lab_name }} - Details</title>
+    <title>{{ lab.name }} - Details</title>
 </head>
 <body>
-    <h1>Lab: {{ lab.lab_name }}</h1>
+    <h1>Lab: {{ lab.name }}</h1>
     <p><strong>Code:</strong> {{ lab.lab_code }}</p>
     <p><strong>Location:</strong> {{ lab.location }}</p>
-    <p><strong>No. of PCs:</strong> {{ lab.number_of_pcs }}</p>
+    <p><strong>Description:</strong> {{ lab.description }}</p>
+    <p><strong>Lab Head:</strong> {{ lab.lab_head }}</p>
+    <p><strong>Total PCs:</strong> {{ lab.pc_set.count }}</p>
 
     <h2>PCs in this Lab:</h2>
     <table border="1">
         <thead>
             <tr>
-                <th>PC ID</th>
-                <th>Brand</th>
+                <th>Asset Tag</th>
+                <th>Hostname</th>
+                <th>IP Address</th>
+                <th>Manufacturer</th>
                 <th>Model</th>
+                <th>CPU</th>
+                <th>RAM (MB)</th>
+                <th>Storage (GB)</th>
+                <th>OS</th>
                 <th>Status</th>
             </tr>
         </thead>
         <tbody>
             {% for pc in lab.pc_set.all %}
             <tr>
-                <td>{{ pc.id }}</td>
-                <td>{{ pc.brand }}</td>
+                <td>{{ pc.asset_tag }}</td>
+                <td>{{ pc.hostname }}</td>
+                <td>{{ pc.ip_address }}</td>
+                <td>{{ pc.manufacturer }}</td>
                 <td>{{ pc.model }}</td>
-                <td>{{ pc.status }}</td>
+                <td>{{ pc.cpu }} ({{ pc.cpu_cores }} cores)</td>
+                <td>{{ pc.ram_mb }}</td>
+                <td>{{ pc.storage_gb }}</td>
+                <td>{{ pc.os_name }} {{ pc.os_version }}</td>
+                <td>
+                    {% if pc.is_defective %}
+                        ❌ Defective ({{ pc.defective_reason }})
+                    {% else %}
+                        ✅ Working
+                    {% endif %}
+                </td>
             </tr>
             {% empty %}
             <tr>
-                <td colspan="4">No PCs assigned to this lab.</td>
+                <td colspan="10">No PCs in this lab.</td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
 
-    <a href="{% url 'lab-list' %}">🔙 Back to Lab List</a>
+    <a href="{% url 'lab-list' %}">🔙 Back to Labs</a>
 </body>
 </html>
