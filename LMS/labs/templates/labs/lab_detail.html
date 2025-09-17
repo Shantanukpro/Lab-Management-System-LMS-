@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ lab.lab_name }} - Details</title>
+</head>
+<body>
+    <h1>Lab: {{ lab.lab_name }}</h1>
+    <p><strong>Code:</strong> {{ lab.lab_code }}</p>
+    <p><strong>Location:</strong> {{ lab.location }}</p>
+    <p><strong>No. of PCs:</strong> {{ lab.number_of_pcs }}</p>
+
+    <h2>PCs in this Lab:</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>PC ID</th>
+                <th>Brand</th>
+                <th>Model</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for pc in lab.pc_set.all %}
+            <tr>
+                <td>{{ pc.id }}</td>
+                <td>{{ pc.brand }}</td>
+                <td>{{ pc.model }}</td>
+                <td>{{ pc.status }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4">No PCs assigned to this lab.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{% url 'lab-list' %}">🔙 Back to Lab List</a>
+</body>
+</html>

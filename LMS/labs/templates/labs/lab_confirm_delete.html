@@ -1,0 +1,15 @@
+<!-- labs/templates/labs/lab_confirm_delete.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete Lab</title>
+</head>
+<body>
+<h1>Are you sure you want to delete "{{ object.name }}"?</h1>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">✅ Yes, Delete</button>
+</form>
+<a href="{% url 'lab-list' %}">❌ Cancel</a>
+</body>
+</html>

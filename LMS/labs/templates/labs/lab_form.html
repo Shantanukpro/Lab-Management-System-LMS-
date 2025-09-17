@@ -1,0 +1,16 @@
+<!-- labs/templates/labs/lab_form.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lab Form</title>
+</head>
+<body>
+<h1>Add/Edit Lab</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">💾 Save</button>
+</form>
+<a href="{% url 'lab-list' %}">⬅ Back to List</a>
+</body>
+</html>

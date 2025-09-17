@@ -176,4 +176,3 @@ class PCAvailability(models.Model):
 
     def __str__(self):
         return f"PC {self.pc.id} - Period {self.class_period.id}"
-
