@@ -4,6 +4,7 @@ from .views import (
     PCCreateView, PCUpdateView, PCDeleteView
 )
 
+
 urlpatterns = [
     path('', LabListView.as_view(), name='lab-list'),
     path('add/', LabCreateView.as_view(), name='lab-add'),
@@ -18,7 +19,5 @@ urlpatterns = [
 
     path('api/', include('labs.api.urls')),
     # Optional: if you have API endpoints
-    
-
 ]
 
